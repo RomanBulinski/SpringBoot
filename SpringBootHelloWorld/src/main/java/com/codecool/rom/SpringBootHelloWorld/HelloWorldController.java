@@ -13,19 +13,25 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HelloWorldController {
 
+
+    @RequestMapping(value = "/hello", method = RequestMethod.GET )
+    public  String helloForm(){
+        return "HelloForm";
+    }
+
 //    @ResponseBody
 //    @RequestMapping("/hello")
-    @RequestMapping(value = "/hello", method = RequestMethod.GET )
+    @RequestMapping(value = "/hello", method = RequestMethod.POST )
     public String hello(HttpServletRequest request, Model model) {
-
         //get name parameter from request
+
         String name = request.getParameter("name");
-        if(name ==null){
+        if(name ==null || name == ""){
             name = "World";
         }
 
         model.addAttribute("message",HelloMessage.getMessage(name));
-        System.out.println(name);
+
         return "Hello";
 
 //        return "Hello/mesage";
