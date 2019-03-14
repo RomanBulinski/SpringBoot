@@ -1,9 +1,12 @@
 package com.codecool.rom.SpringBootHelloWorld;
 
+import Model.HelloMessage;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class HelloWorldController {
@@ -12,9 +15,16 @@ public class HelloWorldController {
     @ResponseBody
 //    @RequestMapping("/hello")
     // sygnatura metody
-    public String hello() {
-        // zwracana wartość przez przeglądarkę
-        return "<h1>"+HelloMessage.getMessage("WOjtek")+"</h1>";
+    public String hello(HttpServletRequest request) {
+
+        //get name parameter from request
+        String name = request.getParameter("name");
+        if(name ==null){
+            name = "World";
+        }
+
+        return "<h1>"+ HelloMessage.getMessage(name)+"</h1>";
+//        return "<h1>"+ HelloMessage.getMessage("Jozek")+"</h1>";
 //        return "<h1>Hello World! :)</h1>";
     }
 
