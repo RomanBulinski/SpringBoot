@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class HelloWorldController {
 
+
     @RequestMapping(value = "/hello", method = RequestMethod.GET )
     @ResponseBody
 //    @RequestMapping("/hello")
